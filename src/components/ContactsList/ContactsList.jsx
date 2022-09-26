@@ -1,9 +1,9 @@
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getFiltredList } from 'redux/selectors';
+import { getFiltredList } from 'redux/filters/selectors';
 import { Container } from '../Form/Form.styled';
 import { StyledItem, StyledName, StyledNumber, StyledBtn } from './Contacts.styled';
-import { removeContact } from 'redux/reducer';
+import { removeContact } from 'redux/contacts/contacts-slice';
 import { useCallback } from 'react';
 import styled from 'styled-components';
 

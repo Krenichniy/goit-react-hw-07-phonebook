@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
 import {Container, Header,FormContainer, LabelContainer, UserInput, StyledBtn } from './Form.styled';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/reducer';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contacts/contacts-slice';
 
 const Form = ({onNotValid }) => {
     const [userName, setName] = useState('');
     const [userTel, setTel] = useState('');
-
-    const contacts = useSelector(state => state.items);
-    
     const dispatch = useDispatch();
  
 
@@ -24,21 +21,10 @@ const Form = ({onNotValid }) => {
         event.preventDefault();
         const name = userName;
         const tel = userTel;
-        if (!name || !tel) {
-            return showMessage('Please fill all fields');
-        }
-
-        const newContact = { name,tel };
-        const isExist = Object.keys(newContact).find(key => {
-            const subString = newContact[key].toLocaleUpperCase();
-            const contact = contacts.find(el => el[key].toLocaleUpperCase().includes(subString));
-            if (contact) return !showMessage(`${contact[key]} is already in contacts`);
-            else return false
-         })
+        if (!name || !tel) return showMessage('Please fill all fields');
         
-        if (isExist) return true;
+        const newContact = { name,tel };
         dispatch(addContact(newContact));
-
         reset();
     }
 
