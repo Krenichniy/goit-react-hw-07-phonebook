@@ -6,17 +6,26 @@ import { StyledItem, StyledName, StyledNumber, StyledBtn } from './Contacts.styl
 import { removeContact } from 'redux/contacts/contacts-slice';
 import { useCallback } from 'react';
 import styled from 'styled-components';
+import { fetchContacts } from 'redux/contacts/conatcts-operations';
+import Loader from 'components/Loader';
+import { useEffect } from 'react';
+import { getLoader } from 'redux/contacts/contacts-selectors';
 
 const ContactsList = () => {
     const contacts = useSelector(getFiltredList);
+    const loader = useSelector(getLoader);
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchContacts());
+    }, [dispatch]);
 
     const onRemoveContact = useCallback((id) => {
         dispatch(removeContact(id));
     }, [dispatch])
     return (
             <Container>
-        <List>
+            <List>
+                {loader && <Loader/>}
              {contacts.map((el) => (
                  <StyledItem key={el.id}>
                      <StyledName>{el.name}</StyledName>:    

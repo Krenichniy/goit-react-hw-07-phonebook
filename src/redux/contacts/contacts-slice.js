@@ -6,7 +6,7 @@ const contactSlice = createSlice({
     extraReducers: {
         [fetchContacts.fulfilled]: (_, { payload }) => payload,
         [addContact.fulfilled]: (store, { payload }) => [...store, payload],
-        [removeContact.fulfilled]:(store, {payload})=> store.filter(item => item.id !==payload)
+        [removeContact.fulfilled]:(store, {payload})=> store.filter(item => item.id !== payload)
     }
 })
 
@@ -45,10 +45,10 @@ const errorSlice = createSlice({
 
 
 
-
-export { addContact, removeContact };
 export default combineReducers({
     items: contactSlice.reducer,
     loader: loaderSlice.reducer,
     error: errorSlice.reducer
 });
+export { addContact, removeContact };
+

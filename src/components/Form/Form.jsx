@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import {Container, Header,FormContainer, LabelContainer, UserInput, StyledBtn } from './Form.styled';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/contacts-slice';
+import { addContact } from 'redux/contacts/conatcts-operations';
+
 
 const Form = ({onNotValid }) => {
     const [userName, setName] = useState('');
@@ -35,34 +36,34 @@ const Form = ({onNotValid }) => {
 
         return (
             <>
-                <Container>
-            <Header>Phonebook</Header>
-            <FormContainer onSubmit={(event) => {formValidation(event, onNotValid)}}>
-                <LabelContainer >
-                    Name
-                    <UserInput
-                        type="text"
-                        name="name"
-                        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                        required
-                        value={userName}
-                        onChange={handleChange} />
-                </LabelContainer>
-
-                <LabelContainer >
-                    Phone Number
-                    <UserInput
-                        type="tel"
-                        name="tel"
-                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
-                        title="Tel may contain only numbers. For example 654-59-78"
-                        required
-                        value={userTel}
-                        onChange={handleChange} />
+            <Container>
+                <Header>Phonebook</Header>
+                <FormContainer onSubmit={(event) => {formValidation(event, onNotValid)}}>
+                    <LabelContainer >
+                        Name
+                        <UserInput
+                            type="text"
+                            name="name"
+                            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                            required
+                            value={userName}
+                            onChange={handleChange} />
                     </LabelContainer>
-                    <StyledBtn type='submit'>Add contact</StyledBtn>
-                    </FormContainer>
+
+                    <LabelContainer >
+                        Phone Number
+                        <UserInput
+                            type="tel"
+                            name="tel"
+                            pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                            title="Tel may contain only numbers. For example 654-59-78"
+                            required
+                            value={userTel}
+                            onChange={handleChange} />
+                        </LabelContainer>
+                        <StyledBtn type='submit'>Add contact</StyledBtn>
+                        </FormContainer>
                     </Container>
                 </>
         )

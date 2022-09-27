@@ -1,4 +1,4 @@
-    export const getFiltredList = ({items:contacts, filter}) => {
+    export const getFiltredList = ({contacts:{items:contacts}, filter}) => {
         if (filter) {
         const subString = filter.toLocaleUpperCase();
         const key = isNaN(+filter.charAt(0)) ? 'name' : 'number';
@@ -9,3 +9,5 @@
 }
     
 export const getFilter = ({ filter }) => filter;
+
+// :{items:contacts}
